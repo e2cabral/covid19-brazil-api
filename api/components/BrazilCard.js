@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
-
 import {
   WhatsappIcon,
 } from 'react-share';
+import axios from '../infra/http/axios';
 
 
 import Card from './Card';
@@ -15,9 +14,7 @@ function CountryCard() {
 
   useEffect(() => {
     async function fethData() {
-      const result = await axios.get(
-        `${window.location.origin}/api/report/v1`,
-      );
+      const result = await axios.get();
       setData(result.data.data.sort((a, b) => (a.cases < b.cases ? 1 : -1)));
     }
     fethData();

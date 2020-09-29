@@ -1,6 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
-
 import {
   FacebookShareButton,
   TwitterShareButton,
@@ -8,6 +6,7 @@ import {
   WhatsappIcon,
   TwitterIcon,
 } from 'react-share';
+import axios from '../infra/http/axios';
 
 
 import Card from './Card';
@@ -25,9 +24,7 @@ function CountryCard(props) {
 
   useEffect(() => {
     async function fethData() {
-      const result = await axios.get(
-        `${window.location.origin}/api/report/v1/${props.country}`,
-      );
+      const result = await axios.get(props.country.toString());
       setData(result.data.data);
     }
     fethData();
